@@ -89,7 +89,13 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 3px; padd
   .member-card { padding: 20px 16px 22px; }
   .topnav { top: 10px; right: 10px; gap: 6px; }
   .topnav-btn { padding: 7px 10px; font-size: 12px; }
-  .theme-toggle .tn-lbl { display: none; }   /* icon-only toggle to save room for both links */
+  /* Icon-only on narrow screens — up to 5 buttons (Directory/Club Chart/theme/Admin/Sign out)
+     won't reliably fit with labels, and wrapping would collide with the hero content below. */
+  .topnav-btn .tn-lbl { display: none; }
+  /* A long email + two action buttons can outgrow 375px — let the row wrap as a fallback
+     even though .admin-email already flexes to absorb most of the space first. */
+  .admin-row { flex-wrap: wrap; row-gap: 8px; }
+  .admin-actions { margin-left: auto; }
 }
 .field { position: relative; }
 .field label {
@@ -232,7 +238,10 @@ table.stat-table tfoot td { font-weight: 700; border-top: 2px solid var(--line);
 .tier-count { color: var(--muted); font-size: 13px; font-family: inherit; }
 .tier-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
 
-.topnav { position: fixed; top: 12px; right: 12px; z-index: 30; display: flex; gap: 8px; }
+.topnav {
+  position: fixed; top: 12px; right: 12px; z-index: 30; display: flex; gap: 8px;
+  flex-wrap: wrap; justify-content: flex-end; max-width: calc(100vw - 24px);
+}
 .topnav-btn {
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
   font: inherit; font-size: 13px; line-height: 1; text-decoration: none;
@@ -271,13 +280,6 @@ body.chir-gated:not(.chir-ready) .topnav { display: none; }
   background: var(--accent); color: var(--accent-ink); border: none; border-radius: 10px; padding: 10px 16px;
 }
 
-.chir-signout-fixed {
-  position: fixed; top: 14px; left: 14px; z-index: 40;
-  font: inherit; font-size: 12px; cursor: pointer;
-  background: var(--panel); color: var(--ink); border: 1px solid var(--line);
-  border-radius: 999px; padding: 7px 12px; box-shadow: var(--shadow);
-}
-
 /* ---- login / signup / migrate ---- */
 .auth-wrap { max-width: 420px; }
 .auth-card {
@@ -314,7 +316,7 @@ body.chir-gated:not(.chir-ready) .topnav { display: none; }
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px;
 }
-.admin-email { font-size: 14px; color: var(--ink); word-break: break-all; }
+.admin-email { font-size: 14px; color: var(--ink); word-break: break-all; flex: 1 1 auto; min-width: 0; }
 .admin-actions { display: flex; gap: 6px; flex: none; }
 .admin-actions button {
   font: inherit; font-size: 12px; cursor: pointer; border-radius: 999px; padding: 6px 12px; border: 1px solid var(--line);

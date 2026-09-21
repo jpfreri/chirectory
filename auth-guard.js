@@ -28,15 +28,19 @@
     if (existing) existing.remove();
   }
 
+  // Folded into the same top-right nav cluster as Directory/Club Chart/theme — a separate
+  // fixed-position button at the opposite corner used to collide with the nav on narrow
+  // screens once it had enough items to wrap.
   function addSignOutButton() {
-    if (document.querySelector("#chir-signout-fixed")) return;
+    var nav = document.querySelector(".topnav");
+    if (!nav || nav.querySelector(".chir-signout-btn")) return;
     var btn = document.createElement("button");
-    btn.id = "chir-signout-fixed";
     btn.type = "button";
-    btn.className = "chir-signout-fixed";
-    btn.textContent = "Sign out";
+    btn.className = "topnav-btn chir-signout-btn";
+    btn.setAttribute("aria-label", "Sign out");
+    btn.innerHTML = '<span class="tn-ico" aria-hidden="true">🚪</span><span class="tn-lbl">Sign out</span>';
     btn.addEventListener("click", function () { auth.signOut(); });
-    document.body.appendChild(btn);
+    nav.appendChild(btn);
   }
 
   // Admin-only "Admin" link, slotted into the existing top-right nav cluster.
@@ -46,6 +50,7 @@
     var link = document.createElement("a");
     link.href = "admin.html";
     link.className = "topnav-btn admin-nav-link";
+    link.setAttribute("aria-label", "Admin");
     link.innerHTML = '<span class="tn-ico" aria-hidden="true">🔑</span><span class="tn-lbl">Admin</span>';
     nav.appendChild(link);
   }
@@ -79,8 +84,8 @@
         setChirectoryData(rosterSnap.exists ? rosterSnap.data() : { members: [], stats: [] });
         clearGate();
         document.body.classList.add("chir-ready");
-        addSignOutButton();
         if (isAdmin) addAdminNavLink();
+        addSignOutButton();
         if (typeof window.initChirectoryPage === "function") window.initChirectoryPage();
       }).catch(function (err) {
         showGate('<div class="chir-gate-card"><h2>Couldn&rsquo;t load the roster</h2><p>' + escapeHtml(err.message) + "</p></div>");

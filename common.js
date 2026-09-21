@@ -120,7 +120,7 @@ function initTopNav() {
   var onChart = location.pathname.indexOf("club-chart") !== -1;
 
   function navLink(href, ico, lbl, active) {
-    var props = { class: "topnav-btn" + (active ? " active" : ""), href: href };
+    var props = { class: "topnav-btn" + (active ? " active" : ""), href: href, "aria-label": lbl };
     if (active) props["aria-current"] = "page";
     return el("a", props, [
       el("span", { class: "tn-ico", "aria-hidden": "true", text: ico }),
