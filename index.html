@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirectory</title>
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("chirectory-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body class="chir-gated">
+<div class="wrap">
+  <header class="hero">
+    <div class="crest" aria-hidden="true">&#9876;&#65039;</div>
+    <h1>Chirectory</h1>
+    <p class="tagline">Member directory</p>
+    <div class="count" id="count" role="status" aria-live="polite"></div>
+  </header>
+
+  <div class="controls">
+    <div class="field">
+      <label for="jump">Jump to a member</label>
+      <select id="jump"><option value="">Select a member&hellip;</option></select>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="search">Search</label>
+        <input id="search" type="search" placeholder="Name, major, or any word&hellip;" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="filter">Rush class</label>
+        <select id="filter"><option value="">All classes</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" id="toggle-all">Expand all</button>
+  </div>
+
+  <div class="list" id="list"></div>
+  <p class="empty-note" id="empty" hidden>No members match your search.</p>
+
+  <section class="stats" id="stats" aria-label="Club statistics"></section>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin-config.js"></script>
+<script src="common.js"></script>
+<script src="script.js"></script>
+<script src="auth-guard.js"></script>
+</body>
+</html>

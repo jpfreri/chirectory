@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+
+    // Paste the same UID you put in admin-config.js here.
+    function isAdmin() {
+      return isSignedIn() && request.auth.uid == "qhQn6eep8sOD99Ha5HTYpbtZBnc2";
+    }
+
+    function isApproved() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.approved == true;
+    }
+
+    // Each signed-in user may create only their own pending record (never pre-approved).
+    // Only the admin can read the full list, approve, revoke, or delete accounts.
+    match /users/{uid} {
+      allow create: if isSignedIn() && request.auth.uid == uid
+                    && request.resource.data.approved == false;
+      allow get: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // The roster is only ever readable by approved members (or the admin); only the
+    // admin (via migrate.html or the console) can write it.
+    match /roster/{docId} {
+      allow read: if isApproved() || isAdmin();
+      allow write: if isAdmin();
+    }
+  }
+}

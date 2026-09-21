@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in · Chirectory</title>
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("chirectory-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<div class="wrap auth-wrap">
+  <header class="hero">
+    <div class="crest" aria-hidden="true">&#9876;&#65039;</div>
+    <h1>Chirectory</h1>
+    <p class="tagline">Member directory</p>
+  </header>
+
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button type="button" id="tab-signin" class="auth-tab active">Sign in</button>
+      <button type="button" id="tab-signup" class="auth-tab">Create account</button>
+    </div>
+
+    <form id="signin-form" class="auth-form">
+      <div class="field">
+        <label for="si-email">Email</label>
+        <input id="si-email" type="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="si-password">Password</label>
+        <input id="si-password" type="password" required autocomplete="current-password">
+      </div>
+      <p class="auth-error" id="si-error" hidden></p>
+      <button type="submit" class="auth-submit">Sign in</button>
+    </form>
+
+    <form id="signup-form" class="auth-form" hidden>
+      <div class="field">
+        <label for="su-email">Email</label>
+        <input id="su-email" type="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="su-password">Password (15+ characters)</label>
+        <input id="su-password" type="password" required minlength="15" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="su-password2">Confirm password</label>
+        <input id="su-password2" type="password" required minlength="15" autocomplete="new-password">
+      </div>
+      <p class="auth-hint">An officer has to approve new accounts before you can see the directory.</p>
+      <p class="auth-error" id="su-error" hidden></p>
+      <button type="submit" class="auth-submit">Create account</button>
+    </form>
+
+    <p class="auth-pending" id="auth-pending" hidden>
+      Account created &mdash; waiting on approval. You can close this tab; we&rsquo;ll let the officers know.
+    </p>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="login.js"></script>
+</body>
+</html>

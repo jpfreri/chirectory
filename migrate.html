@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Migrate data · Chirectory</title>
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("chirectory-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<div class="wrap auth-wrap">
+  <header class="hero">
+    <div class="crest" aria-hidden="true">&#9876;&#65039;</div>
+    <h1>Migrate data</h1>
+    <p class="tagline">Push data.js into Firestore</p>
+  </header>
+
+  <div class="auth-card">
+    <p id="migrate-status">Checking admin access&hellip;</p>
+    <button type="button" id="migrate-btn" class="auth-submit" hidden>Push data.js to Firestore</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin-config.js"></script>
+<script src="data.js"></script>
+<script src="migrate.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# The real member data (phone numbers, birthdays, hometowns, etc.). The live site reads
+# from Firestore, not this file — it's only needed locally to edit data + run migrate.html.
+# Never publish it: doing so would defeat the whole point of gating the site behind login.
+data.js

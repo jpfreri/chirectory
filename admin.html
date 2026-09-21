@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Chirectory</title>
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("chirectory-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="crest" aria-hidden="true">&#9876;&#65039;</div>
+    <h1>Admin</h1>
+    <p class="tagline">Approve new accounts</p>
+    <p class="member-nav"><a class="back" href="index.html">&larr; Back to directory</a></p>
+  </header>
+
+  <div class="toolbar">
+    <button type="button" id="refresh-btn">Refresh</button>
+  </div>
+
+  <section class="admin-section">
+    <h2>Pending (<span id="pending-count">0</span>)</h2>
+    <div id="pending-list" class="admin-list"></div>
+    <p class="empty-note" id="pending-empty" hidden>No pending accounts.</p>
+  </section>
+
+  <section class="admin-section">
+    <h2>Approved (<span id="approved-count">0</span>)</h2>
+    <div id="approved-list" class="admin-list"></div>
+  </section>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

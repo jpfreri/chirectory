@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Club Chart · Chirectory</title>
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("chirectory-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body class="chir-gated">
+<div class="wrap chart-page">
+  <header class="hero">
+    <div class="crest" aria-hidden="true">&#9876;&#65039;</div>
+    <h1>Club Chart</h1>
+    <p class="tagline">Leadership &amp; roles</p>
+  </header>
+
+  <div id="chart" class="chart"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin-config.js"></script>
+<script src="common.js"></script>
+<script src="club-chart.js"></script>
+<script src="auth-guard.js"></script>
+</body>
+</html>
