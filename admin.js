@@ -68,22 +68,14 @@
         rejectBtn.addEventListener("click", function () { removeUser(row.id); });
         actions.appendChild(rejectBtn);
       } else {
-        var revokeBtn = document.createElement("button");
-        revokeBtn.type = "button";
-        revokeBtn.className = "admin-reject";
-        revokeBtn.textContent = "Revoke";
-        revokeBtn.title = "Send back to Pending — they'll need re-approval to get back in.";
-        revokeBtn.addEventListener("click", function () { setApproved(row.id, false); });
-        actions.appendChild(revokeBtn);
-
         var removeBtn = document.createElement("button");
         removeBtn.type = "button";
         removeBtn.className = "admin-remove";
         removeBtn.textContent = "Remove";
-        removeBtn.title = "Delete their account record entirely.";
+        removeBtn.title = "Send back to Pending — they lose access until re-approved.";
         removeBtn.addEventListener("click", function () {
-          if (window.confirm("Remove " + row.email + "? They'll lose access and have to sign up again from scratch.")) {
-            removeUser(row.id);
+          if (window.confirm("Remove " + row.email + "'s access? They'll go back to Pending and need re-approval to get back in.")) {
+            setApproved(row.id, false);
           }
         });
         actions.appendChild(removeBtn);

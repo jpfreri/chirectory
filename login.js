@@ -58,8 +58,8 @@
     var errorEl = document.querySelector("#su-error");
     errorEl.hidden = true;
 
-    if (password.length < 15) {
-      showError(errorEl, "Password needs to be at least 15 characters.");
+    if (password.length < 10) {
+      showError(errorEl, "Password needs to be at least 10 characters.");
       return;
     }
     if (password !== password2) {
