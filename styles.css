@@ -177,13 +177,17 @@ dl.info dd a:hover { text-decoration: underline; }
   border: 2px dashed var(--line); background: var(--accent-soft);
   display: grid; place-items: center; color: var(--muted); font-size: 56px; line-height: 1;
 }
-.member-photo.has-photo { border-style: solid; }
-.member-photo-img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+/* With a real photo, the frame drops the fixed square and instead hugs whatever size the
+   image renders at (capped by max-width/max-height) — so the frame's shape always matches
+   the photo's own aspect ratio instead of forcing every photo into a square. */
+.member-photo.has-photo { border-style: solid; width: auto; height: auto; }
+.member-photo-img { display: block; max-width: 132px; max-height: 176px; width: auto; height: auto; }
 .member-name { font-family: Georgia, serif; color: var(--title); margin: 0; font-size: clamp(28px, 6vw, 40px); }
 .member-sub { color: var(--muted); margin: 4px 0 0; font-size: 14px; }
 @media (max-width: 480px) {
   .member-head { flex-direction: column; align-items: center; text-align: center; gap: 14px; }
   .member-photo { width: 120px; height: 120px; }
+  .member-photo-img { max-width: 160px; max-height: 200px; }
 }
 .member-card dl.info { grid-template-columns: 160px 1fr; }
 @media (max-width: 480px) { .member-card dl.info { grid-template-columns: 120px 1fr; } }
